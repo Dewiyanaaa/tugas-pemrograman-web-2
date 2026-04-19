@@ -1,5 +1,9 @@
 <x-app>
     <x-slot:title>{{ $title }}</x-slot>
 
-    <h1 class="fw-bold">Data Pasien</h1>
+    <ul class="list-group">
+        <li class="list-group-item">An item</li>
+
+    </ul>
+
 </x-app>
