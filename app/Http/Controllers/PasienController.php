@@ -12,10 +12,10 @@ class PasienController extends Controller
      */
     public function index()
     {
-        dd(Pasien::all());
-         return view('Pasien.index' , [
+        
+         return view('pasien.index' , [
             'title' => 'Pasien',
-            'Pasiens' => pasien::all(),
+           'Pasiens' => Pasien::all(),
             ]);
     }
 
