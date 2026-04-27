@@ -18,6 +18,17 @@
 
                 <a class="btn btn-warning btn-sm" href="{{ route('pasien.edit', $Pasien) }}" role="button">Edit</a>
 
+
+                <form action="{{ route('pasien.destroy', $Pasien) }}" method="POST" class="d-inline">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm"
+                        onclick="return confirm ('ANDA YAKIN')">Delete</button>
+                </form>
+
+
+
+
             </li>
         @endforeach
     </ul>

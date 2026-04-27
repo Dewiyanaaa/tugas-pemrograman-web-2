@@ -120,6 +120,7 @@ return to_route('pasien.index')->withSuccess('Data berhasil diupdate');
      */
     public function destroy(Pasien $pasien)
     {
-        //
+         $pasien->delete( $pasien);
+return to_route('pasien.index')->withSuccess('Data berhasil dihapus');
     }
 }
