@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PasienController::class, 'index']);
 
-Route::get('/Pasien', [PasienController::class, 'index'])->name('pasien.index');
-Route::get('/Pasien/create', [PasienController::class, 'create'])->name('pasien.create');
-Route::post('/Pasien/store', [PasienController::class, 'store'])->name('pasien.store');
+Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
+Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
+Route::post('/pasien/store', [PasienController::class, 'store'])->name('pasien.store');
+
+Route::get('/pasien/{pasien}/edit', [PasienController::class, 'edit'])->name('pasien.edit');
+
+Route::PUT('/pasien/{pasien}', [PasienController::class, 'update'])->name('pasien.update');
 
