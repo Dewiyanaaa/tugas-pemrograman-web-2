@@ -37,18 +37,33 @@ class DokterController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+   public function create()
+{
+    return view('dokter.create', [
+        'title' => 'Tambah Data Dokter',
+        'polikliniks' => \App\Models\Poliklinik::all()
+    ]);
+}
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+   public function store(Request $request)
+{
+    $validated = $request->validate([
+        'nama' => 'required',
+        'spesialis' => 'required',
+        'telepon' => 'required',
+        'alamat' => 'required',
+        'jadwal_praktik' => 'required',
+        'poliklinik_id' => 'required',
+    ]);
+
+    Dokter::create($validated);
+
+    return redirect()->route('dokter.index')
+        ->with('success', 'Data dokter berhasil ditambahkan');
+}
 
     /**
      * Display the specified resource.
