@@ -72,4 +72,12 @@ public function destroy(Poliklinik $poliklinik)
         ->with('success', 'Data poliklinik berhasil dihapus');
 }
 
+public function show(Poliklinik $poliklinik)
+{
+    return view('poliklinik.show', [
+        'title' => 'Detail Poliklinik',
+        'poliklinik' => $poliklinik
+    ]);
+}
+
 }

@@ -62,6 +62,10 @@
                             Delete
                         </button>
 
+                        <a href="{{ route('poliklinik.show', $poliklinik->id) }}" class="btn btn-info btn-sm">
+                            Detail
+                        </a>
+
                 </li>
             @endforeach
 
