@@ -2,15 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Poliklinik;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class PoliklinikSeeder extends Seeder
 {
     public function run(): void
     {
-$this->call([
-    PasienSeeder::class,
-    PoliklinikSeeder::class,
-]);
+        Poliklinik::factory(10)->create();
     }
 }
