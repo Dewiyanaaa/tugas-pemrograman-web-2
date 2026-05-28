@@ -64,5 +64,12 @@ public function update(Request $request, Poliklinik $poliklinik)
         ->with('success', 'Data poliklinik berhasil diubah');
 }
 
+public function destroy(Poliklinik $poliklinik)
+{
+    $poliklinik->delete();
+
+    return redirect()->route('poliklinik.index')
+        ->with('success', 'Data poliklinik berhasil dihapus');
+}
 
 }

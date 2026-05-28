@@ -53,9 +53,14 @@
                         Edit
                     </a>
 
-                    <button class="btn btn-danger btn-sm">
-                        Delete
-                    </button>
+                    <form action="{{ route('poliklinik.destroy', $poliklinik->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Yakin ingin menghapus data?')">
+                            Delete
+                        </button>
 
                 </li>
             @endforeach
