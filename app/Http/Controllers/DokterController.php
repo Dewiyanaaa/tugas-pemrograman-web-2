@@ -77,17 +77,33 @@ class DokterController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Dokter $dokter)
-    {
-        //
-    }
+{
+    return view('dokter.edit', [
+        'title' => 'Edit Data Dokter',
+        'dokter' => $dokter,
+        'polikliniks' => Poliklinik::all()
+    ]);
+}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Dokter $dokter)
-    {
-        //
-    }
+{
+    $validated = $request->validate([
+        'nama' => 'required',
+        'spesialis' => 'required',
+        'telepon' => 'required',
+        'alamat' => 'required',
+        'jadwal_praktik' => 'required',
+        'poliklinik_id' => 'required',
+    ]);
+
+    $dokter->update($validated);
+
+    return redirect()->route('dokter.index')
+        ->with('success', 'Data dokter berhasil diubah');
+}
 
     /**
      * Remove the specified resource from storage.
