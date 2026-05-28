@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PoliklinikController;
+use App\Http\Controllers\DokterController;
 
 Route::get('/', function () {
     return redirect('/pasien');
@@ -15,3 +16,4 @@ Route::get('/pasien/{pasien}/edit', [PasienController::class, 'edit'])->name('pa
 Route::put('/pasien/{pasien}', [PasienController::class, 'update'])->name('pasien.update');
 Route::delete('/pasien/{pasien}', [PasienController::class, 'destroy'])->name('pasien.destroy');
 Route::resource('poliklinik', PoliklinikController::class);
+Route::resource('dokter', DokterController::class);
