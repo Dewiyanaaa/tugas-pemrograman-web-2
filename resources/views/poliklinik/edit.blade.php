@@ -1,13 +1,13 @@
 <x-app :title="$title">
 
 
-
-    <form action="{{ route('poliklinik.store') }}" method="POST">
+    <form action="{{ route('poliklinik.update', $poliklinik->id) }}" method="POST">
         @csrf
+        @method('PUT')
 
         <div class="mb-3">
             <label>Nama Poliklinik</label>
-            <input type="text" name="nama" class="form-control" value="{{ old('nama') }}">
+            <input type="text" name="nama" class="form-control" value="{{ old('nama', $poliklinik->nama) }}">
 
             @error('nama')
                 <small class="text-danger">
@@ -22,19 +22,19 @@
             <select name="lokasi" class="form-control">
                 <option value="">-- Pilih Lokasi --</option>
 
-                <option value="Lantai 1" {{ old('lokasi') == 'Lantai 1' ? 'selected' : '' }}>
+                <option value="Lantai 1" {{ old('lokasi', $poliklinik->lokasi) == 'Lantai 1' ? 'selected' : '' }}>
                     Lantai 1
                 </option>
 
-                <option value="Lantai 2" {{ old('lokasi') == 'Lantai 2' ? 'selected' : '' }}>
+                <option value="Lantai 2" {{ old('lokasi', $poliklinik->lokasi) == 'Lantai 2' ? 'selected' : '' }}>
                     Lantai 2
                 </option>
 
-                <option value="Gedung A" {{ old('lokasi') == 'Gedung A' ? 'selected' : '' }}>
+                <option value="Gedung A" {{ old('lokasi', $poliklinik->lokasi) == 'Gedung A' ? 'selected' : '' }}>
                     Gedung A
                 </option>
 
-                <option value="Gedung B" {{ old('lokasi') == 'Gedung B' ? 'selected' : '' }}>
+                <option value="Gedung B" {{ old('lokasi', $poliklinik->lokasi) == 'Gedung B' ? 'selected' : '' }}>
                     Gedung B
                 </option>
             </select>
@@ -48,7 +48,8 @@
 
         <div class="mb-3">
             <label>Telepon</label>
-            <input type="text" name="telepon" class="form-control" value="{{ old('telepon') }}">
+            <input type="text" name="telepon" class="form-control"
+                value="{{ old('telepon', $poliklinik->telepon) }}">
 
             @error('telepon')
                 <small class="text-danger">
@@ -62,10 +63,8 @@
         </a>
 
         <button type="submit" class="btn btn-primary">
-            Submit
+            Update
         </button>
-
-    </form>
 
 
 

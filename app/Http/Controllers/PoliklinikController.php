@@ -41,4 +41,28 @@ class PoliklinikController extends Controller
         return redirect()->route('poliklinik.index')
             ->with('success', 'Data poliklinik berhasil ditambahkan');
     }
+
+    public function edit(Poliklinik $poliklinik)
+{
+    return view('poliklinik.edit', [
+        'title' => 'Edit Data Poliklinik',
+        'poliklinik' => $poliklinik
+    ]);
+}
+
+public function update(Request $request, Poliklinik $poliklinik)
+{
+    $validated = $request->validate([
+        'nama' => 'required',
+        'lokasi' => 'required',
+        'telepon' => 'required',
+    ]);
+
+    $poliklinik->update($validated);
+
+    return redirect()->route('poliklinik.index')
+        ->with('success', 'Data poliklinik berhasil diubah');
+}
+
+
 }

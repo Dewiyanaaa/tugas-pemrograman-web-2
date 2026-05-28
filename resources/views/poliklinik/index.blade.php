@@ -2,10 +2,14 @@
     <x-slot:title>
         Data Poliklinik
     </x-slot>
-
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="container mt-4">
 
-        <a href="#" class="btn btn-primary mb-3">
+        <a href="{{ route('poliklinik.create') }}" class="btn btn-primary mb-3">
             Create
         </a>
 
@@ -43,9 +47,11 @@
 
                     {{ $poliklinik->telepon }}
 
-                    <button class="btn btn-warning btn-sm">
+
+
+                    <a href="{{ route('poliklinik.edit', $poliklinik->id) }}" class="btn btn-warning btn-sm">
                         Edit
-                    </button>
+                    </a>
 
                     <button class="btn btn-danger btn-sm">
                         Delete

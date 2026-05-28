@@ -10,8 +10,8 @@ class Poliklinik extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama',
-        'lokasi',
-        'telepon'
-    ];
+    'nama',
+    'lokasi',
+    'telepon'
+];
 }
