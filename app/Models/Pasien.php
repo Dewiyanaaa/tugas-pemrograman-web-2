@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-
-#[Fillable(['name' , 'umur' , 'jeniskelamin' , 'alamat' , 'keluhan'])]
 class Pasien extends Model
 {
-    /** @use HasFactory<\Database\Factories\PasienFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'umur',
+        'jeniskelamin',
+        'alamat',
+        'keluhan',
+    ];
 }

@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PoliklinikController;
 
-
-Route::get('/', [PasienController::class, 'index']);
+Route::get('/', function () {
+    return redirect('/pasien');
+});
 
 Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
 Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
 Route::post('/pasien/store', [PasienController::class, 'store'])->name('pasien.store');
 Route::get('/pasien/{pasien}/edit', [PasienController::class, 'edit'])->name('pasien.edit');
-Route::PUT('/pasien/{pasien}', [PasienController::class, 'update'])->name('pasien.update');
-Route::DELETE('/pasien/{pasien}', [PasienController::class, 'destroy'])->name('pasien.destroy');
-
+Route::put('/pasien/{pasien}', [PasienController::class, 'update'])->name('pasien.update');
+Route::delete('/pasien/{pasien}', [PasienController::class, 'destroy'])->name('pasien.destroy');
+Route::resource('poliklinik', PoliklinikController::class);

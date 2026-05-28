@@ -9,15 +9,17 @@ class PoliklinikController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->search;
+        $keyword = request('keyword');
 
-        $polikliniks = Poliklinik::when($search, function ($query) use ($search) {
-            $query->where('nama', 'like', '%' . $search . '%');
-        })->paginate(10);
+    $polikliniks = Poliklinik::when($keyword, function ($query) use ($keyword) {
+        $query->where('nama', 'like', '%' . $keyword . '%');
+    })
+    ->paginate(5)
+    ->withQueryString();
 
-        return view('poliklinik.index', [
-            'title' => 'Data Poliklinik',
-            'polikliniks' => $polikliniks
-        ]);
+    return view('poliklinik.index', [
+        'title' => 'Data Poliklinik',
+        'polikliniks' => $polikliniks
+    ]);
     }
 }
