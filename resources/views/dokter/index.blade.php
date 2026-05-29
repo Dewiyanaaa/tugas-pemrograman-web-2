@@ -65,7 +65,7 @@
 
                     </form>
 
-                    <a href="{{ route('dokter.show', $dokter->id) }}" class="btn btn-info btn-sm text-white">
+                    <a href="{{ route('dokter.show', $dokter->id) }}" class="btn btn-info btn-sm">
                         Detail
                     </a>
                 </div>

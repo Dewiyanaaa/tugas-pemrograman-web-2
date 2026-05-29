@@ -69,9 +69,12 @@ class DokterController extends Controller
      * Display the specified resource.
      */
     public function show(Dokter $dokter)
-    {
-        //
-    }
+{
+    return view('dokter.show', [
+        'title' => 'Detail Data Dokter',
+        'dokter' => $dokter
+    ]);
+}
 
     /**
      * Show the form for editing the specified resource.
