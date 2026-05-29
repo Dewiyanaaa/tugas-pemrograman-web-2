@@ -56,9 +56,13 @@
                         @csrf
                         @method('DELETE')
 
-                        <button onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-sm">
+                        <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Yakin ingin menghapus data dokter ini?')">
+
                             Delete
+
                         </button>
+
                     </form>
 
                     <a href="{{ route('dokter.show', $dokter->id) }}" class="btn btn-info btn-sm text-white">

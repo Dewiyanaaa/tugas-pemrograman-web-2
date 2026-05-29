@@ -108,8 +108,11 @@ class DokterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dokter $dokter)
-    {
-        //
-    }
+   public function destroy(Dokter $dokter)
+{
+    $dokter->delete();
+
+    return redirect()->route('dokter.index')
+        ->with('success', 'Data dokter berhasil dihapus');
+}
 }

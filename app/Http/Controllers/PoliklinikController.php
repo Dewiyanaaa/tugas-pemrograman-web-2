@@ -44,9 +44,10 @@ class PoliklinikController extends Controller
 
     public function edit(Poliklinik $poliklinik)
 {
-    return view('poliklinik.edit', [
-        'title' => 'Edit Data Poliklinik',
-        'poliklinik' => $poliklinik
+     return view('dokter.edit', [
+        'title' => 'Edit Data Dokter',
+        'dokter' => $dokter,
+        'polikliniks' => Poliklinik::all()
     ]);
 }
 
