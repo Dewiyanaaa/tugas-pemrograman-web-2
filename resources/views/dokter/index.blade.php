@@ -1,8 +1,14 @@
 <x-app :title="$title">
 
-    <a href="{{ route('dokter.create') }}" class="btn btn-primary mb-3">
-        Create
-    </a>
+    <div class="mb-3">
+        <a href="{{ route('dokter.create') }}" class="btn btn-primary">
+            Create
+        </a>
+
+        <a href="{{ route('dokter.trash') }}" class="btn btn-danger">
+            Trash
+        </a>
+    </div>
 
     <form action="{{ route('dokter.index') }}" method="GET">
         <div class="row mb-3">
@@ -14,7 +20,9 @@
 
             <div class="col-md-3">
                 <select name="poliklinik_id" class="form-control">
-                    <option value="">-- Semua Poliklinik --</option>
+                    <option value="">
+                        -- Semua Poliklinik --
+                    </option>
 
                     @foreach ($polikliniks as $poliklinik)
                         <option value="{{ $poliklinik->id }}"
@@ -49,24 +57,28 @@
                     --
                     {{ $dokter->poliklinik->nama }}
 
-                    <a href="{{ route('dokter.edit', $dokter->id) }}" class="btn btn-warning btn-sm">
-                        Edit
-                    </a>
+                    <div class="mt-2">
 
-                    <form action="{{ route('dokter.destroy', $dokter->id) }}" method="POST" class="d-inline">
+                        <a href="{{ route('dokter.edit', $dokter->id) }}" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
 
-                        @csrf
-                        @method('DELETE')
+                        <form action="{{ route('dokter.destroy', $dokter->id) }}" method="POST" class="d-inline">
 
-                        <button type="submit" class="btn btn-danger btn-sm"
-                            onclick="return confirm('Yakin ingin menghapus data dokter ini?')">
-                            Delete
-                        </button>
-                    </form>
+                            @csrf
+                            @method('DELETE')
 
-                    <a href="{{ route('dokter.show', $dokter->id) }}" class="btn btn-info btn-sm">
-                        Detail
-                    </a>
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Yakin ingin menghapus data dokter ini?')">
+                                Delete
+                            </button>
+                        </form>
+
+                        <a href="{{ route('dokter.show', $dokter->id) }}" class="btn btn-info btn-sm text-white">
+                            Detail
+                        </a>
+
+                    </div>
 
                 </div>
 

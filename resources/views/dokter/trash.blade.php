@@ -1,0 +1,35 @@
+<x-app :title="$title">
+
+    <a href="{{ route('dokter.index') }}" class="btn btn-primary mb-3">
+        Back
+    </a>
+
+    <div class="card">
+        <div class="card-header">
+            Data Dokter Terhapus
+        </div>
+
+        <div class="card-body p-0">
+
+            @forelse ($dokters as $dokter)
+                <div class="border-bottom p-3">
+
+                    {{ $dokter->nama }}
+                    --
+                    {{ $dokter->spesialis }}
+                    --
+                    {{ $dokter->email }}
+
+                </div>
+
+            @empty
+
+                <div class="p-3 text-center">
+                    Tidak ada data di trash
+                </div>
+            @endforelse
+
+        </div>
+    </div>
+
+</x-app>
