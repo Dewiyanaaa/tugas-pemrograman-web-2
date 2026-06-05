@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokter;
 use App\Models\Poliklinik;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class DokterController extends Controller
 {
@@ -48,7 +48,7 @@ class DokterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-   public function store(Request $request)
+  public function store(Request $request)
 {
     $validated = $request->validate([
         'nama' => 'required',
@@ -69,10 +69,25 @@ class DokterController extends Controller
         'poliklinik_id.required' => 'Poliklinik wajib dipilih!',
     ]);
 
-    Dokter::create($validated);
+    DB::beginTransaction();
 
-    return redirect()->route('dokter.index')
-        ->with('success', 'Data dokter berhasil ditambahkan');
+    try {
+
+        Dokter::create($validated);
+
+        DB::commit();
+
+        return redirect()->route('dokter.index')
+            ->with('success', 'Data dokter berhasil ditambahkan');
+
+    } catch (\Exception $e) {
+
+        DB::rollBack();
+
+        return back()
+            ->with('error', 'Data dokter gagal ditambahkan!')
+            ->withInput();
+    }
 }
 
     /**
