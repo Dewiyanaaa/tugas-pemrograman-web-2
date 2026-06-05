@@ -13,30 +13,33 @@ class DokterSeeder extends Seeder
         for ($i = 1; $i <= 50; $i++) {
 
             Dokter::create([
-    'nama' => fake()->name(),
+                'nama' => fake()->name(),
 
-    'spesialis' => fake()->randomElement([
-        'Dokter Umum',
-        'Dokter Gigi',
-        'Dokter Anak',
-        'Dokter Jantung',
-    ]),
+                'spesialis' => fake()->randomElement([
+                    'Dokter Umum',
+                    'Dokter Gigi',
+                    'Dokter Anak',
+                    'Dokter Jantung',
+                ]),
 
-    'telepon' => fake()->phoneNumber(),
+                'telepon' => fake()->phoneNumber(),
 
-    'alamat' => fake()->address(),
+                // TAMBAHAN FIELD BARU
+                'email' => fake()->unique()->safeEmail(),
 
-    'jadwal_praktik' => fake()->randomElement([
-        'Senin - Jumat',
-        'Senin - Sabtu',
-        'Selasa - Kamis',
-        'Pagi',
-        'Siang',
-        'Malam',
-    ]),
+                'alamat' => fake()->address(),
 
-    'poliklinik_id' => Poliklinik::inRandomOrder()->first()->id,
-]);
+                'jadwal_praktik' => fake()->randomElement([
+                    'Senin - Jumat',
+                    'Senin - Sabtu',
+                    'Selasa - Kamis',
+                    'Pagi',
+                    'Siang',
+                    'Malam',
+                ]),
+
+                'poliklinik_id' => Poliklinik::inRandomOrder()->first()->id,
+            ]);
         }
     }
 }

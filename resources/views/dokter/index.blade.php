@@ -1,6 +1,5 @@
 <x-app :title="$title">
 
-
     <a href="{{ route('dokter.create') }}" class="btn btn-primary mb-3">
         Create
     </a>
@@ -46,6 +45,8 @@
                     --
                     {{ $dokter->spesialis }}
                     --
+                    {{ $dokter->email }}
+                    --
                     {{ $dokter->poliklinik->nama }}
 
                     <a href="{{ route('dokter.edit', $dokter->id) }}" class="btn btn-warning btn-sm">
@@ -53,6 +54,7 @@
                     </a>
 
                     <form action="{{ route('dokter.destroy', $dokter->id) }}" method="POST" class="d-inline">
+
                         @csrf
                         @method('DELETE')
 
@@ -81,8 +83,5 @@
     <div class="mt-3">
         {{ $dokters->links() }}
     </div>
-
-
-
 
 </x-app>

@@ -50,21 +50,25 @@ class DokterController extends Controller
      */
    public function store(Request $request)
 {
-  $validated = $request->validate([
-    'nama' => 'required',
-    'spesialis' => 'required',
-    'telepon' => 'required',
-    'alamat' => 'required',
-    'jadwal_praktik' => 'required',
-    'poliklinik_id' => 'required',
-], [
-    'nama.required' => 'Nama dokter wajib diisi!',
-    'spesialis.required' => 'Spesialis wajib diisi!',
-    'telepon.required' => 'Nomor telepon wajib diisi!',
-    'alamat.required' => 'Alamat wajib diisi!',
-    'jadwal_praktik.required' => 'Jadwal praktik wajib diisi!',
-    'poliklinik_id.required' => 'Poliklinik wajib dipilih!',
-]);
+    $validated = $request->validate([
+        'nama' => 'required',
+        'spesialis' => 'required',
+        'telepon' => 'required',
+        'email' => 'required|email',
+        'alamat' => 'required',
+        'jadwal_praktik' => 'required',
+        'poliklinik_id' => 'required',
+    ], [
+        'nama.required' => 'Nama dokter wajib diisi!',
+        'spesialis.required' => 'Spesialis wajib diisi!',
+        'telepon.required' => 'Nomor telepon wajib diisi!',
+        'email.required' => 'Email wajib diisi!',
+        'email.email' => 'Format email tidak valid!',
+        'alamat.required' => 'Alamat wajib diisi!',
+        'jadwal_praktik.required' => 'Jadwal praktik wajib diisi!',
+        'poliklinik_id.required' => 'Poliklinik wajib dipilih!',
+    ]);
+
     Dokter::create($validated);
 
     return redirect()->route('dokter.index')
@@ -100,20 +104,24 @@ class DokterController extends Controller
    public function update(Request $request, Dokter $dokter)
 {
     $validated = $request->validate([
-    'nama' => 'required',
-    'spesialis' => 'required',
-    'telepon' => 'required',
-    'alamat' => 'required',
-    'jadwal_praktik' => 'required',
-    'poliklinik_id' => 'required',
-], [
-    'nama.required' => 'Nama dokter wajib diisi!',
-    'spesialis.required' => 'Spesialis wajib diisi!',
-    'telepon.required' => 'Nomor telepon wajib diisi!',
-    'alamat.required' => 'Alamat wajib diisi!',
-    'jadwal_praktik.required' => 'Jadwal praktik wajib diisi!',
-    'poliklinik_id.required' => 'Poliklinik wajib dipilih!',
-]);
+        'nama' => 'required',
+        'spesialis' => 'required',
+        'telepon' => 'required',
+        'email' => 'required|email',
+        'alamat' => 'required',
+        'jadwal_praktik' => 'required',
+        'poliklinik_id' => 'required',
+    ], [
+        'nama.required' => 'Nama dokter wajib diisi!',
+        'spesialis.required' => 'Spesialis wajib diisi!',
+        'telepon.required' => 'Nomor telepon wajib diisi!',
+        'email.required' => 'Email wajib diisi!',
+        'email.email' => 'Format email tidak valid!',
+        'alamat.required' => 'Alamat wajib diisi!',
+        'jadwal_praktik.required' => 'Jadwal praktik wajib diisi!',
+        'poliklinik_id.required' => 'Poliklinik wajib dipilih!',
+    ]);
+
     $dokter->update($validated);
 
     return redirect()->route('dokter.index')

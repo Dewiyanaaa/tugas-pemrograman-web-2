@@ -11,15 +11,15 @@ class Dokter extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'nama',
-        'spesialis',
-        'jadwal_praktik',
-        'telepon',
-        'email',
-        'alamat',
-        'poliklinik_id'
-    ];
+   protected $fillable = [
+    'nama',
+    'spesialis',
+    'telepon',
+    'email',
+    'alamat',
+    'jadwal_praktik',
+    'poliklinik_id'
+];
 
    
 
