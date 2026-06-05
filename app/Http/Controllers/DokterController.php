@@ -116,13 +116,13 @@ class DokterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-   public function update(Request $request, Dokter $dokter)
+  public function update(Request $request, Dokter $dokter)
 {
     $validated = $request->validate([
         'nama' => 'required',
         'spesialis' => 'required',
         'telepon' => 'required',
-        'email' => 'required|email',
+        'email' => 'required',
         'alamat' => 'required',
         'jadwal_praktik' => 'required',
         'poliklinik_id' => 'required',
@@ -131,16 +131,26 @@ class DokterController extends Controller
         'spesialis.required' => 'Spesialis wajib diisi!',
         'telepon.required' => 'Nomor telepon wajib diisi!',
         'email.required' => 'Email wajib diisi!',
-        'email.email' => 'Format email tidak valid!',
         'alamat.required' => 'Alamat wajib diisi!',
         'jadwal_praktik.required' => 'Jadwal praktik wajib diisi!',
         'poliklinik_id.required' => 'Poliklinik wajib dipilih!',
     ]);
 
-    $dokter->update($validated);
+    try {
+        DB::beginTransaction();
 
-    return redirect()->route('dokter.index')
-        ->with('success', 'Data dokter berhasil diubah');
+        $dokter->update($validated);
+
+        DB::commit();
+
+        return redirect()->route('dokter.index')
+            ->with('success', 'Data dokter berhasil diubah');
+    } catch (\Exception $e) {
+
+        DB::rollBack();
+
+        return back()->with('error', 'Data gagal diubah');
+    }
 }
 
     /**
