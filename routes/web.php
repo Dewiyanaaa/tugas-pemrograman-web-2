@@ -29,3 +29,5 @@ Route::get('/dokter/trash', [DokterController::class, 'trash'])
     ->name('dokter.trash');
 
 Route::resource('dokter', DokterController::class);
+Route::put('/dokter/{id}/restore', [DokterController::class, 'restore'])
+    ->name('dokter.restore');

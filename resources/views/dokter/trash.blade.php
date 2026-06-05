@@ -5,6 +5,7 @@
     </a>
 
     <div class="card">
+
         <div class="card-header">
             Data Dokter Terhapus
         </div>
@@ -19,6 +20,17 @@
                     {{ $dokter->spesialis }}
                     --
                     {{ $dokter->email }}
+
+                    <form action="{{ route('dokter.restore', $dokter->id) }}" method="POST" class="d-inline">
+
+                        @csrf
+                        @method('PUT')
+
+                        <button type="submit" class="btn btn-success btn-sm">
+                            Restore
+                        </button>
+
+                    </form>
 
                 </div>
 

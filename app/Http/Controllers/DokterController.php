@@ -173,5 +173,14 @@ public function trash()
         'dokters' => $dokters
     ]);
 }
+public function restore($id)
+{
+    $dokter = Dokter::onlyTrashed()->findOrFail($id);
+
+    $dokter->restore();
+
+    return redirect()->route('dokter.trash')
+        ->with('success', 'Data dokter berhasil dikembalikan');
+}
 
 }
