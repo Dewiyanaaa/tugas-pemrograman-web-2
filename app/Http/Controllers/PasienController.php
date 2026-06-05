@@ -7,20 +7,16 @@ use Illuminate\Http\Request;
 
 class PasienController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('pasien.index', [
             'title' => 'Data Pasien',
-             'pasiens' => Pasien::all()
+            'pasiens' => Pasien::all()
+        
+            
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('pasien.create', [
@@ -28,28 +24,36 @@ class PasienController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255',
-            'umur' => 'required|numeric',
+            'name' => 'required',
+            'umur' => 'required',
             'jeniskelamin' => 'required',
-            'alamat' => 'required|max:255',
-            'keluhan' => 'required|max:300',
+            'alamat' => 'required',
+            'keluhan' => 'required',
+        ], [
+            'name.required' => 'Nama pasien wajib diisi!',
+            'umur.required' => 'Umur wajib diisi!',
+            'jeniskelamin.required' => 'Jenis kelamin wajib dipilih!',
+            'alamat.required' => 'Alamat wajib diisi!',
+            'keluhan.required' => 'Keluhan wajib diisi!',
         ]);
 
         Pasien::create($validated);
 
-        return to_route('pasien.index')
-            ->withSuccess('Data berhasil ditambahkan');
+        return redirect()->route('pasien.index')
+            ->with('success', 'Data pasien berhasil ditambahkan');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    public function show(Pasien $pasien)
+    {
+        return view('pasien.show', [
+            'title' => 'Detail Pasien',
+            'pasien' => $pasien
+        ]);
+    }
+
     public function edit(Pasien $pasien)
     {
         return view('pasien.edit', [
@@ -58,33 +62,33 @@ class PasienController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Pasien $pasien)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255',
-            'umur' => 'required|numeric',
+            'name' => 'required',
+            'umur' => 'required',
             'jeniskelamin' => 'required',
-            'alamat' => 'required|max:255',
-            'keluhan' => 'required|max:300',
+            'alamat' => 'required',
+            'keluhan' => 'required',
+        ], [
+            'name.required' => 'Nama pasien wajib diisi!',
+            'umur.required' => 'Umur wajib diisi!',
+            'jeniskelamin.required' => 'Jenis kelamin wajib dipilih!',
+            'alamat.required' => 'Alamat wajib diisi!',
+            'keluhan.required' => 'Keluhan wajib diisi!',
         ]);
 
         $pasien->update($validated);
 
-        return to_route('pasien.index')
-            ->withSuccess('Data berhasil diubah');
+        return redirect()->route('pasien.index')
+            ->with('success', 'Data pasien berhasil diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Pasien $pasien)
     {
         $pasien->delete();
 
-        return to_route('pasien.index')
-            ->withSuccess('Data berhasil dihapus');
+        return redirect()->route('pasien.index')
+            ->with('success', 'Data pasien berhasil dihapus');
     }
 }

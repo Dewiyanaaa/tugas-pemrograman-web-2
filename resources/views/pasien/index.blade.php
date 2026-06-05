@@ -8,12 +8,7 @@
             Create
         </a>
 
-        {{-- Pesan sukses --}}
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+
 
         {{-- List Data --}}
         <ul class="list-group">
@@ -37,28 +32,17 @@
                         --
 
                         {{ $pasien->keluhan }}
-                    </div>
 
-                    <div class="d-flex gap-2">
+                        <a class="btn btn-warning btn-sm" href="{{ route('pasien.edit', $pasien) }}">Edit</a>
 
-                        {{-- Tombol Edit --}}
-                        <a href="{{ route('pasien.edit', $pasien) }}" class="btn btn-warning">
-                            Edit
-                        </a>
+                        <a class="btn btn-info btn-sm" href="{{ route('pasien.show', $pasien) }}">Detail</a>
 
-                        {{-- Tombol Delete --}}
-                        <form action="{{ route('pasien.destroy', $pasien) }}" method="POST">
-
+                        <form action="{{ route('pasien.destroy', $pasien) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus data?')">
-                                Delete
-                            </button>
-
+                            <button class="btn btn-danger btn-sm">Delete</button>
                         </form>
 
-                    </div>
 
                 </li>
             @endforeach

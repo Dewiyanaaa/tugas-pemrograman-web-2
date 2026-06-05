@@ -29,26 +29,21 @@ class PoliklinikController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nama' => 'required',
-            'lokasi' => 'required',
-            'telepon' => 'required',
-        ]);
-
-        Poliklinik::create($validated);
-
-        return redirect()->route('poliklinik.index')
-            ->with('success', 'Data poliklinik berhasil ditambahkan');
-    }
-
-    public function edit(Poliklinik $poliklinik)
 {
-     return view('dokter.edit', [
-        'title' => 'Edit Data Dokter',
-        'dokter' => $dokter,
-        'polikliniks' => Poliklinik::all()
+    $validated = $request->validate([
+        'nama' => 'required',
+        'lokasi' => 'required',
+        'telepon' => 'required',
+    ], [
+        'nama.required' => 'Nama poliklinik wajib diisi!',
+        'lokasi.required' => 'Lokasi poliklinik wajib diisi!',
+        'telepon.required' => 'Nomor telepon wajib diisi!',
     ]);
+
+    Poliklinik::create($validated);
+
+    return redirect()->route('poliklinik.index')
+        ->with('success', 'Data poliklinik berhasil ditambahkan');
 }
 
 public function update(Request $request, Poliklinik $poliklinik)
@@ -57,6 +52,10 @@ public function update(Request $request, Poliklinik $poliklinik)
         'nama' => 'required',
         'lokasi' => 'required',
         'telepon' => 'required',
+    ], [
+        'nama.required' => 'Nama poliklinik wajib diisi!',
+        'lokasi.required' => 'Lokasi poliklinik wajib diisi!',
+        'telepon.required' => 'Nomor telepon wajib diisi!',
     ]);
 
     $poliklinik->update($validated);
@@ -64,7 +63,6 @@ public function update(Request $request, Poliklinik $poliklinik)
     return redirect()->route('poliklinik.index')
         ->with('success', 'Data poliklinik berhasil diubah');
 }
-
 public function destroy(Poliklinik $poliklinik)
 {
     $poliklinik->delete();
@@ -77,6 +75,13 @@ public function show(Poliklinik $poliklinik)
 {
     return view('poliklinik.show', [
         'title' => 'Detail Poliklinik',
+        'poliklinik' => $poliklinik
+    ]);
+}
+public function edit(Poliklinik $poliklinik)
+{
+    return view('poliklinik.edit', [
+        'title' => 'Edit Data Poliklinik',
         'poliklinik' => $poliklinik
     ]);
 }

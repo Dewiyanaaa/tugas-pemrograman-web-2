@@ -2,11 +2,7 @@
     <x-slot:title>
         Data Poliklinik
     </x-slot>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+
     <div class="container mt-4">
 
         <a href="{{ route('poliklinik.create') }}" class="btn btn-primary mb-3">
@@ -61,10 +57,10 @@
                             onclick="return confirm('Yakin ingin menghapus data?')">
                             Delete
                         </button>
-
-                        <a href="{{ route('poliklinik.show', $poliklinik->id) }}" class="btn btn-info btn-sm">
-                            Detail
-                        </a>
+                    </form>
+                    <a href="{{ route('poliklinik.show', $poliklinik->id) }}" class="btn btn-info btn-sm">
+                        Detail
+                    </a>
 
                 </li>
             @endforeach

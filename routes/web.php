@@ -14,6 +14,8 @@ Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.
 Route::post('/pasien/store', [PasienController::class, 'store'])->name('pasien.store');
 Route::get('/pasien/{pasien}/edit', [PasienController::class, 'edit'])->name('pasien.edit');
 Route::put('/pasien/{pasien}', [PasienController::class, 'update'])->name('pasien.update');
+Route::get('/pasien/{pasien}', [PasienController::class, 'show'])
+    ->name('pasien.show');
 Route::delete('/pasien/{pasien}', [PasienController::class, 'destroy'])->name('pasien.destroy');
 Route::resource('poliklinik', PoliklinikController::class);
 Route::resource('dokter', DokterController::class);

@@ -11,6 +11,7 @@
             <form action="{{ route('dokter.store') }}" method="POST">
                 @csrf
 
+                {{-- Nama Dokter --}}
                 <div class="mb-3">
                     <label>Nama Dokter</label>
                     <input type="text" name="nama" class="form-control" value="{{ old('nama') }}">
@@ -22,6 +23,7 @@
                     @enderror
                 </div>
 
+                {{-- Spesialis --}}
                 <div class="mb-3">
                     <label>Spesialis</label>
                     <input type="text" name="spesialis" class="form-control" value="{{ old('spesialis') }}">
@@ -33,6 +35,7 @@
                     @enderror
                 </div>
 
+                {{-- Telepon --}}
                 <div class="mb-3">
                     <label>Telepon</label>
                     <input type="text" name="telepon" class="form-control" value="{{ old('telepon') }}">
@@ -44,6 +47,7 @@
                     @enderror
                 </div>
 
+                {{-- Alamat --}}
                 <div class="mb-3">
                     <label>Alamat</label>
                     <textarea name="alamat" class="form-control" rows="3">{{ old('alamat') }}</textarea>
@@ -55,13 +59,15 @@
                     @enderror
                 </div>
 
+                {{-- Jadwal Praktik --}}
                 <div class="mb-3">
                     <label>Jadwal Praktik</label>
+
                     <select name="jadwal_praktik" class="form-control">
                         <option value="">-- Pilih Jadwal --</option>
-                        <option value="Pagi">Pagi</option>
-                        <option value="Siang">Siang</option>
-                        <option value="Malam">Malam</option>
+                        <option value="Pagi" {{ old('jadwal_praktik') == 'Pagi' ? 'selected' : '' }}>Pagi</option>
+                        <option value="Siang" {{ old('jadwal_praktik') == 'Siang' ? 'selected' : '' }}>Siang</option>
+                        <option value="Malam" {{ old('jadwal_praktik') == 'Malam' ? 'selected' : '' }}>Malam</option>
                     </select>
 
                     @error('jadwal_praktik')
@@ -71,16 +77,16 @@
                     @enderror
                 </div>
 
+                {{-- Poliklinik --}}
                 <div class="mb-3">
                     <label>Poliklinik</label>
 
                     <select name="poliklinik_id" class="form-control">
-                        <option value="">
-                            -- Pilih Poliklinik --
-                        </option>
+                        <option value="">-- Pilih Poliklinik --</option>
 
                         @foreach ($polikliniks as $poliklinik)
-                            <option value="{{ $poliklinik->id }}">
+                            <option value="{{ $poliklinik->id }}"
+                                {{ old('poliklinik_id') == $poliklinik->id ? 'selected' : '' }}>
                                 {{ $poliklinik->nama }}
                             </option>
                         @endforeach

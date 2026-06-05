@@ -40,7 +40,8 @@
 
             @forelse ($dokters as $dokter)
                 <div class="border-bottom p-3">
-                    {{ $loop->iteration }}.
+
+                    {{ $dokters->firstItem() + $loop->index }}.
                     {{ $dokter->nama }}
                     --
                     {{ $dokter->spesialis }}
@@ -52,22 +53,19 @@
                     </a>
 
                     <form action="{{ route('dokter.destroy', $dokter->id) }}" method="POST" class="d-inline">
-
                         @csrf
                         @method('DELETE')
 
                         <button type="submit" class="btn btn-danger btn-sm"
                             onclick="return confirm('Yakin ingin menghapus data dokter ini?')">
-
                             Delete
-
                         </button>
-
                     </form>
 
                     <a href="{{ route('dokter.show', $dokter->id) }}" class="btn btn-info btn-sm">
                         Detail
                     </a>
+
                 </div>
 
             @empty
@@ -78,12 +76,12 @@
             @endforelse
 
         </div>
-
     </div>
 
     <div class="mt-3">
         {{ $dokters->links() }}
     </div>
+
 
 
 
