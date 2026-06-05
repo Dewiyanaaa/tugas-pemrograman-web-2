@@ -31,3 +31,6 @@ Route::get('/dokter/trash', [DokterController::class, 'trash'])
 Route::resource('dokter', DokterController::class);
 Route::put('/dokter/{id}/restore', [DokterController::class, 'restore'])
     ->name('dokter.restore');
+    Route::resource('dokter', DokterController::class);
+    Route::delete('/dokter/{id}/force-delete', [DokterController::class, 'forceDelete'])
+    ->name('dokter.forceDelete');

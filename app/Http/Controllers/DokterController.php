@@ -183,4 +183,14 @@ public function restore($id)
         ->with('success', 'Data dokter berhasil dikembalikan');
 }
 
+public function forceDelete($id)
+{
+    $dokter = Dokter::onlyTrashed()->findOrFail($id);
+
+    $dokter->forceDelete();
+
+    return redirect()->route('dokter.trash')
+        ->with('success', 'Data dokter berhasil dihapus permanen');
+}
+
 }

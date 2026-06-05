@@ -21,16 +21,34 @@
                     --
                     {{ $dokter->email }}
 
-                    <form action="{{ route('dokter.restore', $dokter->id) }}" method="POST" class="d-inline">
+                    <div class="mt-2">
 
-                        @csrf
-                        @method('PUT')
+                        <form action="{{ route('dokter.restore', $dokter->id) }}" method="POST" class="d-inline">
 
-                        <button type="submit" class="btn btn-success btn-sm">
-                            Restore
-                        </button>
+                            @csrf
+                            @method('PUT')
 
-                    </form>
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Restore
+                            </button>
+
+                        </form>
+
+                        <form action="{{ route('dokter.forceDelete', $dokter->id) }}" method="POST" class="d-inline">
+
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Yakin hapus permanen?')">
+
+                                Delete Permanent
+
+                            </button>
+
+                        </form>
+
+                    </div>
 
                 </div>
 
